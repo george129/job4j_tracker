@@ -6,8 +6,8 @@ public class Item {
     private String id;
     private String name;
 
-    public Item(String name) {
-        this.name = name;
+    public Item(String nm) {
+        name = nm;
     }
 
     public String getId() {
@@ -25,4 +25,6 @@ public class Item {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }
