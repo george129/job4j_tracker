@@ -67,12 +67,19 @@ public class StartUITest {
     public void findAll() {
         Output out = new StubOutput();
         Tracker tr = new Tracker();
-        tr.add(new Item("test1"));
-        tr.add(new Item("test2"));
-        tr.add(new Item("test3"));
+        Item[] items = {
+                new Item("test1"),
+                new Item("test2"),
+                new Item("test3")
+        };
+        tr.add(items[0]);
+        tr.add(items[1]);
+        tr.add(items[2]);
         Input in = new StubInput(new String[]{"0","1"});
         new StartUI(out).init(in, tr, new UserAction[]{new ListAction(out), new ExitAction(out)});
-        System.out.println(out.toString());
+        Assert.assertTrue(out.toString().contains(items[0].getId()));
+        Assert.assertTrue(out.toString().contains(items[1].getId()));
+        Assert.assertTrue(out.toString().contains(items[2].getId()));
     }
 
     @Test
@@ -93,12 +100,12 @@ public class StartUITest {
         new StartUI(out).init(in, tr, new UserAction[] {
                 new FindByIdAction(out), new ExitAction(out)
         });
-//????
-        Assert.assertEquals(t2, tr.findById(t2.getId()));
+        Assert.assertTrue(out.toString().contains(t2.getId()));
     }
 
     @Test
     public void findItemByName() {
+        Output out = new StubOutput();
         Tracker tr = new Tracker();
         Item t1 = new Item("first test");
         Item t2 = new Item("second test");
@@ -106,7 +113,12 @@ public class StartUITest {
         tr.add(t1);
         tr.add(t2);
         tr.add(t3);
-        Assert.assertEquals(t2, tr.findByName(t2.getName())[0]);
+        Input in = new StubInput(new String[]{"0", t2.getName(), "1"});
+        new StartUI(out).init(in, tr, new UserAction[]{
+                new FindByNameAction(out),
+                new ExitAction(out)
+        });
+        Assert.assertTrue(out.toString().contains(t2.getName()));
     }
 
     @Test
