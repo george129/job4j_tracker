@@ -3,6 +3,8 @@ package ru.job4j.tracker;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.is;
+
 public class StartUITest {
 
     @Test
@@ -75,11 +77,21 @@ public class StartUITest {
         tr.add(items[0]);
         tr.add(items[1]);
         tr.add(items[2]);
-        Input in = new StubInput(new String[]{"0","1"});
+        String ls = System.lineSeparator();
+        Input in = new StubInput(new String[]{"0", "1"});
         new StartUI(out).init(in, tr, new UserAction[]{new ListAction(out), new ExitAction(out)});
-        Assert.assertTrue(out.toString().contains(items[0].getId()));
-        Assert.assertTrue(out.toString().contains(items[1].getId()));
-        Assert.assertTrue(out.toString().contains(items[2].getId()));
+//        System.out.println(out.toString());
+        Assert.assertThat(out.toString(), is("Menu"
+                + ls + "0.Show all items"
+                + ls + "1.Exit"
+                + ls + "Enter choice number: [" + items[0].getId() + "]:" + items[0].getName()
+                + ls + "[" + items[1].getId() + "]:" + items[1].getName()
+                + ls + "[" + items[2].getId() + "]:" + items[2].getName()
+                + ls + "Menu"
+                + ls + "0.Show all items"
+                + ls + "1.Exit"
+                + ls + "Enter choice number: Exiting..."
+                + ls));
     }
 
     @Test
@@ -100,7 +112,17 @@ public class StartUITest {
         new StartUI(out).init(in, tr, new UserAction[] {
                 new FindByIdAction(out), new ExitAction(out)
         });
-        Assert.assertTrue(out.toString().contains(t2.getId()));
+//        System.out.println(out.toString());
+        String ls = System.lineSeparator();
+        Assert.assertThat(out.toString(), is("Menu"
+                + ls + "0.Find item by Id"
+                + ls + "1.Exit"
+                + ls + "Enter choice number: found: [" + t2.getId() + "]:" + t2.getName()
+                + ls + "Menu"
+                + ls + "0.Find item by Id"
+                + ls + "1.Exit"
+                + ls + "Enter choice number: Exiting..."
+                + ls));
     }
 
     @Test
@@ -118,7 +140,17 @@ public class StartUITest {
                 new FindByNameAction(out),
                 new ExitAction(out)
         });
-        Assert.assertTrue(out.toString().contains(t2.getName()));
+        System.out.println(out.toString());
+        String ls = System.lineSeparator();
+        Assert.assertThat(out.toString(), is("Menu"
+                + ls + "0.Find items by name"
+                + ls + "1.Exit"
+                + ls + "Enter choice number: [" + t2.getId() + "]:" + t2.getName()
+                + ls + "Menu"
+                + ls + "0.Find items by name"
+                + ls + "1.Exit"
+                + ls + "Enter choice number: Exiting..."
+                + ls));
     }
 
     @Test
