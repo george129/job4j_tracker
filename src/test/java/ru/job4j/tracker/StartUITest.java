@@ -163,4 +163,19 @@ public class StartUITest {
         String ls = System.lineSeparator();
         Assert.assertEquals("Menu"+ls+"0.Exit"+ls+"Enter choice number: "+"Exiting..."+ls, out.toString());
     }
+
+    @Test
+    public void invalidInput() {
+        Output out = new StubOutput();
+        Input in = new StubInput(new String[] {"10", "0"});
+        Tracker tr = new Tracker();
+        UserAction[] acts = {new ExitAction(out)};
+        new StartUI(out).init(in, tr, acts);
+        String ls = System.lineSeparator();
+        System.out.println(out.toString());
+        Assert.assertEquals("Menu"+ls+"0.Exit"+ls+"Enter choice number: "
+                + "Wrong menu number. From 0 to 0 allowed"
+                + ls + "Menu"+ls+"0.Exit"
+                + ls+"Enter choice number: " + "Exiting..." + ls, out.toString());
+    }
 }
