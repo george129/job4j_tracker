@@ -16,7 +16,7 @@ public class StartUITest {
         UserAction[] acts = {
                 new CreateAction(out),
                 new ExitAction(out)
-        } ;
+        };
         new StartUI(out).init(in, tr, acts);
         Item[] created = tr.findAll();
         Assert.assertEquals(created[0].getName(), answer[1]);
@@ -80,7 +80,6 @@ public class StartUITest {
         String ls = System.lineSeparator();
         Input in = new StubInput(new String[]{"0", "1"});
         new StartUI(out).init(in, tr, new UserAction[]{new ListAction(out), new ExitAction(out)});
-//        System.out.println(out.toString());
         Assert.assertThat(out.toString(), is("Menu"
                 + ls + "0.Show all items"
                 + ls + "1.Exit"
@@ -112,7 +111,6 @@ public class StartUITest {
         new StartUI(out).init(in, tr, new UserAction[] {
                 new FindByIdAction(out), new ExitAction(out)
         });
-//        System.out.println(out.toString());
         String ls = System.lineSeparator();
         Assert.assertThat(out.toString(), is("Menu"
                 + ls + "0.Find item by Id"
@@ -161,7 +159,10 @@ public class StartUITest {
         UserAction[] acts = {new ExitAction(out)};
         new StartUI(out).init(in, tr, acts);
         String ls = System.lineSeparator();
-        Assert.assertEquals("Menu"+ls+"0.Exit"+ls+"Enter choice number: "+"Exiting..."+ls, out.toString());
+        Assert.assertEquals("Menu"
+                + ls + "0.Exit"
+                + ls + "Enter choice number: " + "Exiting..."
+                + ls, out.toString());
     }
 
     @Test
@@ -173,9 +174,22 @@ public class StartUITest {
         new StartUI(out).init(in, tr, acts);
         String ls = System.lineSeparator();
         System.out.println(out.toString());
-        Assert.assertEquals("Menu"+ls+"0.Exit"+ls+"Enter choice number: "
-                + "Wrong menu number. From 0 to 0 allowed"
-                + ls + "Menu"+ls+"0.Exit"
-                + ls+"Enter choice number: " + "Exiting..." + ls, out.toString());
+        Assert.assertEquals("Menu"
+                + ls + "0.Exit"
+                + ls + "Enter choice number: " + "Wrong menu number. From 0 to 0 allowed"
+                + ls + "Menu"
+                + ls + "0.Exit"
+                + ls + "Enter choice number: " + "Exiting..."
+                + ls, out.toString());
+    }
+
+    @Test
+    public void wrongInput() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"nan", "1"}
+        );
+        ValidateInput vin = new ValidateInput(out, in);
+        int selected = vin.askInt("Enter menu");
     }
 }
