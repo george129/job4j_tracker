@@ -13,7 +13,7 @@ public class StartUI {
             this.showMenu(action);
             int select = in.askInt("");
             if (select < 0 || select > action.length - 1) {
-                out.println("Wrong menu number. From 0 to " +(action.length - 1) + " allowed");
+                out.println("Wrong menu number. From 0 to " + (action.length - 1) + " allowed");
                 continue;
             }
             run = action[select].execute(in, tr);
@@ -23,7 +23,7 @@ public class StartUI {
 
     private void showMenu(UserAction[] actions) {
         out.println("Menu");
-        for (int i = 0; i < actions.length; i++){
+        for (int i = 0; i < actions.length; i++) {
             out.println(i + "." + actions[i].name());
         }
         out.print("Enter choice number: ");
@@ -31,7 +31,7 @@ public class StartUI {
 
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
-        Input input = new ValidateInput();
+        Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tr = new Tracker();
         UserAction[] actions = {
                 new CreateAction(output),
