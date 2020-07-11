@@ -30,9 +30,8 @@ public class ValidateInputTest {
 
     @Test
     public void outputTest() {
-        Input in = new StubInput(new String[] {"1", "2", "3"});
-        assertEquals("1", in.askStr(""));
-        assertEquals("2", in.askStr(""));
-        assertEquals("3", in.askStr(""));
+        Output out = new StubOutput();
+        out.println("This text should be tested");
+        assertThat(out.toString(), is("This text should be tested" + System.lineSeparator()));
     }
 }
