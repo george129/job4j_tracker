@@ -15,7 +15,6 @@ public class ValidateInputTest {
         );
         ValidateInput vin = new ValidateInput(out, in);
         int selected = vin.askInt("Enter menu");
-        System.out.println(out.toString());
         assertThat(selected, is(1));
     }
 
@@ -31,7 +30,11 @@ public class ValidateInputTest {
     @Test
     public void outputTest() {
         Output out = new StubOutput();
-        out.println("This text should be tested");
-        assertThat(out.toString(), is("This text should be tested" + System.lineSeparator()));
+        Input in = new StubInput(
+                new String[] {"nan", "1"}
+        );
+        ValidateInput vin = new ValidateInput(out, in);
+        int selected = vin.askInt("Enter menu");
+        assertThat("Enter valid data again" + System.lineSeparator(), is(out.toString()));
     }
 }
