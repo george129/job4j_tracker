@@ -19,8 +19,8 @@ public class TrackerTest {
     @Test
     public void checkNulls() {
         Tracker tr = new Tracker();
-        Assert.assertEquals(0, tr.findByName("10").length);
-        Assert.assertEquals(0, tr.findAll().length);
+        Assert.assertEquals(0, tr.findByName("10").size());
+        Assert.assertEquals(0, tr.findAll().size());
         Assert.assertEquals(null, tr.findById("10"));
     }
 
@@ -29,9 +29,9 @@ public class TrackerTest {
         Tracker tr = new Tracker();
         tr.add(new Item("test"));
         tr.add(new Item("ddfv"));
-        Assert.assertEquals("test", tr.findAll()[0].getName());
-        Assert.assertEquals("ddfv", tr.findAll()[1].getName());
-        Assert.assertEquals(2, tr.findAll().length);
+        Assert.assertEquals("test", tr.findAll().get(0).getName());
+        Assert.assertEquals("ddfv", tr.findAll().get(1).getName());
+        Assert.assertEquals(2, tr.findAll().size());
     }
 
     @Test
@@ -39,8 +39,8 @@ public class TrackerTest {
         Tracker tr = new Tracker();
         tr.add(new Item("fgvs"));
         tr.add(new Item("1234"));
-        Assert.assertEquals("fgvs", tr.findByName("fgvs")[0].getName());
-        Assert.assertEquals("1234", tr.findByName("1234")[0].getName());
+        Assert.assertEquals("fgvs", tr.findByName("fgvs").get(0).getName());
+        Assert.assertEquals("1234", tr.findByName("1234").get(0).getName());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class TrackerTest {
         Tracker tr = new Tracker();
         tr.add(new Item("fgvs"));
         tr.add(new Item("1234"));
-        Assert.assertEquals("1234", tr.findById(tr.findByName("1234")[0].getId()).getName());
+        Assert.assertEquals("1234", tr.findById(tr.findByName("1234").get(0).getId()).getName());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class TrackerTest {
         String id = it.getId();
         Item itDesc = new Item("Bug with description");
         tr.replace(id, itDesc);
-        Assert.assertEquals("Bug with description",tr.findById(id).getName());
+        Assert.assertEquals("Bug with description", tr.findById(id).getName());
     }
 
     @Test

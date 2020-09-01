@@ -3,6 +3,8 @@ package ru.job4j.tracker;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 
 public class StartUITest {
@@ -18,11 +20,11 @@ public class StartUITest {
                 new ExitAction(out)
         };
         new StartUI(out).init(in, tr, acts);
-        Item[] created = tr.findAll();
-        Assert.assertEquals(created[0].getName(), answer[1]);
-        Assert.assertEquals(created[1].getName(), answer[3]);
-        Assert.assertEquals(created[2].getName(), answer[5]);
-        Assert.assertEquals(created[3].getName(), answer[7]);
+        List<Item> created = tr.findAll();
+        Assert.assertEquals(created.get(0).getName(), answer[1]);
+        Assert.assertEquals(created.get(1).getName(), answer[3]);
+        Assert.assertEquals(created.get(2).getName(), answer[5]);
+        Assert.assertEquals(created.get(3).getName(), answer[7]);
     }
 
     @Test
@@ -56,12 +58,12 @@ public class StartUITest {
                 new ExitAction(out)
         };
         new StartUI(out).init(in, tr, acts);
-        Item[] itemsAfterEdit;
+        List<Item> itemsAfterEdit;
         tr.delete(deletedId);
         itemsAfterEdit = tr.findAll();
-        Assert.assertEquals(2, itemsAfterEdit.length);
-        Assert.assertEquals("test1", itemsAfterEdit[0].getName());
-        Assert.assertEquals("test3", itemsAfterEdit[1].getName());
+        Assert.assertEquals(2, itemsAfterEdit.size());
+        Assert.assertEquals("test1", itemsAfterEdit.get(0).getName());
+        Assert.assertEquals("test3", itemsAfterEdit.get(1).getName());
         Assert.assertEquals(null, tr.findById(deletedId));
     }
 
