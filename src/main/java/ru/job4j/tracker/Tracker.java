@@ -20,7 +20,7 @@ public class Tracker {
         }
         item.setId(generateId());
         items.add(item);
-        return items.get(items.size()-1);
+        return item;
     }
 
     public boolean replace(String id, Item item) {
@@ -54,9 +54,7 @@ public class Tracker {
     }
 
     public List<Item> findAll() {
-        List ret =  new ArrayList<Item>();//items.toArray();
-        ret.addAll(items);
-        return ret;
+        return items;
     }
 
     public List<Item> findByName(String key) {
