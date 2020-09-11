@@ -18,12 +18,12 @@ public class ItemTest {
         itemList.add(new Item("Two"));
         itemList.add(new Item("Three"));
         itemList.add(new Item("Four"));
-        Collections.sort(itemList);
+        Collections.sort(itemList, new ItemComparatorAsc());
         assertEquals("Four", itemList.get(0).getName());
         assertEquals("One", itemList.get(1).getName());
         assertEquals("Three", itemList.get(2).getName());
         assertEquals("Two", itemList.get(3).getName());
-        Collections.sort(itemList, Collections.reverseOrder());
+        Collections.sort(itemList, new ItemComparatorDesc());
         assertEquals("Two", itemList.get(0).getName());
         assertEquals("Three", itemList.get(1).getName());
         assertEquals("One", itemList.get(2).getName());
