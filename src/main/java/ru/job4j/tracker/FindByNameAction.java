@@ -22,7 +22,7 @@ public class FindByNameAction implements UserAction {
         itarrFind.addAll(tr.findByName(findName));
         if (itarrFind.size() != 0) {
             for (int i = 0; i < itarrFind.size(); i++) {
-                out.println("[" + (itarrFind.get(i).getId() ) + "]:" + itarrFind.get(i).getName());
+                out.println("[" + (itarrFind.get(i).getId()) + "]:" + itarrFind.get(i).getName());
             }
         } else {
             out.println("Nothing found for \"" + findName + "\"");
