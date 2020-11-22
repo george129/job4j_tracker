@@ -1,4 +1,4 @@
-package collection;
+package ru.job4j.collection;
 
 import org.junit.Test;
 import ru.job4j.collection.DepDescComp;
@@ -14,7 +14,7 @@ public class DepDescCompTest {
                 "K2/SK1/SSK2",
                 "K2/SK1/SSK1"
         );
-        assertTrue(rsl>0);
+        assertTrue(rsl > 0);
     }
 
     @Test

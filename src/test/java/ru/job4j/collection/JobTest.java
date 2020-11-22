@@ -1,4 +1,4 @@
-package collection;
+package ru.job4j.collection;
 
 import org.junit.Test;
 import ru.job4j.collection.*;
@@ -50,12 +50,12 @@ public class JobTest {
 
         Collections.sort(jl, new JobCmpPriorityDesc().thenComparing(new JobCmpNameDesc()));
         assertEquals(Arrays.asList(
-                new Job("test2",6),
-                new Job("test2",5),
-                new Job("test1",3),
-                new Job("test2",2),
-                new Job("test1",1),
-                new Job("test1",0)),
+                new Job("test2", 6),
+                new Job("test2", 5),
+                new Job("test1", 3),
+                new Job("test2", 2),
+                new Job("test1", 1),
+                new Job("test1", 0)),
                 jl);
     }
 

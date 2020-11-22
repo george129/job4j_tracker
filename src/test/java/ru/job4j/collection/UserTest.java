@@ -1,4 +1,4 @@
-package collection;
+package ru.job4j.collection;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class UserTest {
                 .compareTo(
                         new User("Ivan", 31)
                 );
-        assertTrue(rsl>0);
+        assertTrue(rsl > 0);
     }
 
     @Test

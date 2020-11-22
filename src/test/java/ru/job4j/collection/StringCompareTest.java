@@ -1,4 +1,4 @@
-package collection;
+package ru.job4j.collection;
 
 import org.junit.Test;
 import ru.job4j.collection.StringCompare;
@@ -18,7 +18,7 @@ public class StringCompareTest {
     }
 
     @Test
-    public void whenLeftLessThanRightResultNegative () {
+    public void whenLeftLessThanRightResultNegative() {
         StringCompare compare = new StringCompare();
         int rst = compare.compare(
                 "Ivanov",
@@ -28,7 +28,7 @@ public class StringCompareTest {
     }
 
     @Test
-    public void whenLeftGreaterThanRightResultPositive () {
+    public void whenLeftGreaterThanRightResultPositive() {
         StringCompare compare = new StringCompare();
         int rst = compare.compare(
                 "Petrov",
@@ -38,7 +38,7 @@ public class StringCompareTest {
     }
 
     @Test
-    public void secondCharOfLeftGreaterThanRightShouldBePositive(){
+    public void secondCharOfLeftGreaterThanRightShouldBePositive() {
         StringCompare compare = new StringCompare();
         int rst = compare.compare(
                 "Petrov",
@@ -48,7 +48,7 @@ public class StringCompareTest {
     }
 
     @Test
-    public void secondCharOfLeftLessThanRightShouldBeNegative(){
+    public void secondCharOfLeftLessThanRightShouldBeNegative() {
         StringCompare compare = new StringCompare();
         int rst = compare.compare(
                 "Patrova",
