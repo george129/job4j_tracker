@@ -13,10 +13,9 @@ public class Lambdas {
         Comparator<Attachment> comparator = (left, right) -> left.getSize() - right.getSize();
         Comparator<Attachment> compDesc = (left, right) -> right.getName().compareTo(left.getName());
         Comparator<String> cmpText = (left, right) -> left.compareTo(right);
-        Comparator<String> cmpDescSize = (left, right) -> {
-            System.out.println("Comparing " + right + " and " + left);
-            return right.compareTo(left);
+        Comparator<String> cmpDesc = (left, right) -> {
+            System.out.println("Comparing " + right.length() + " and " + left.length());
+            return right.length() - left.length();
         };
-        Arrays.sort(atts, compDesc);
     }
 }
