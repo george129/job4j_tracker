@@ -24,5 +24,14 @@ public class PhoneDictionaryTest {
 
     @org.junit.Test
     public void find() {
+        PhoneDictionary phones = new PhoneDictionary();
+        phones.add(
+                new Person("Petr", "Arsentev", "534872", "Bryansk")
+        );
+        assertThat(phones.find("yansk").get(0).getSurname(), is("Arsentev"));
+        assertThat(phones.find("348").get(0).getSurname(), is("Arsentev"));
+        assertThat(phones.find("Pet").get(0).getSurname(), is("Arsentev"));
+        assertThat(phones.find("sent").get(0).getSurname(), is("Arsentev"));
+        assertEquals(phones.find("Jean").size(), 0);
     }
 }
