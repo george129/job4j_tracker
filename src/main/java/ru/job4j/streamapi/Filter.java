@@ -14,8 +14,9 @@ public class Filter {
             System.out.print(num + "\t");
         }
         System.out.println();
-        List<Integer> positive = nums.stream().filter((ints) -> ints >= 0).
-                collect(Collectors.toList());
+        List<Integer> positive = nums.stream()
+                .filter((ints) -> ints >= 0)
+                .collect(Collectors.toList());
         for (Integer num : positive) {
             System.out.print(num + "\t");
         }
