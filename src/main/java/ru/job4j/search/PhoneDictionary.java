@@ -11,36 +11,11 @@ public class PhoneDictionary {
     }
 
     public ArrayList<Person> find(String key) {
-        Predicate<Person> name = new Predicate<Person>() {
-            @Override
-            public boolean test(Person p) {
-                return p.getName().contains(key);
-            }
-        };
-        Predicate<Person> surname = new Predicate<Person>() {
-            @Override
-            public boolean test(Person p) {
-                return p.getSurname().contains(key);
-            }
-        };
-        Predicate<Person> address = new Predicate<Person>() {
-            @Override
-            public boolean test(Person p) {
-                return p.getAddress().contains(key);
-            }
-        };
-        Predicate<Person> phone = new Predicate<Person>() {
-            @Override
-            public boolean test(Person p) {
-                return p.getPhone().contains(key);
-            }
-        };
-        Predicate<Person> comb = new Predicate<Person>() {
-            @Override
-            public boolean test(Person p) {
-                return phone.or(address.or(name.or(surname))).test(p);
-            }
-        };
+        Predicate<Person> name =  (p) -> p.getName().contains(key);
+        Predicate<Person> surname = (p) -> p.getSurname().contains(key);
+        Predicate<Person> address = (p) -> p.getAddress().contains(key);
+        Predicate<Person> phone = (p) -> p.getPhone().contains(key);
+        Predicate<Person> comb = (p) -> phone.or(address.or(name.or(surname))).test(p);
         ArrayList<Person> result = new ArrayList<Person>();
         for (Person p: persons) {
             if (comb.test(p)) {
