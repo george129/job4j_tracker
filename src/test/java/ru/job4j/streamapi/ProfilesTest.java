@@ -17,6 +17,18 @@ public class ProfilesTest {
         Profiles p = new Profiles();
         List<Profile> pr = new ArrayList<>();
         pr.add(new Profile(new Address(
+                "Смоленск",
+                "Пушкина",
+                23,
+                15), "Innokenty")
+        );
+        pr.add(new Profile(new Address(
+                "Москва",
+                "Свободы",
+                120,
+                31), "Samson")
+        );
+        pr.add(new Profile(new Address(
                 "City 17",
                 "Liberty",
                 5,
@@ -26,13 +38,7 @@ public class ProfilesTest {
                 "Москва",
                 "Свободы",
                 120,
-                31), "Samson")
-        );
-        pr.add(new Profile(new Address(
-                "Смоленск",
-                "Пушкина",
-                23,
-                15), "Innokenty")
+                31), "Socrat")
         );
         assertThat(p.collect(pr), is(Arrays.asList(
                 new Address("City 17", "Liberty", 5, 2),
