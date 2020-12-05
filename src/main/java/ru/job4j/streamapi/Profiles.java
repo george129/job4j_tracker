@@ -8,9 +8,9 @@ public class Profiles {
 
     List<Address> collect(List<Profile> profiles) {
         return profiles.stream()
-                .sorted(Comparator.comparing(Profile::getAddress, new ProfileCmpByAddr()))
-                .distinct()
                 .map(profile -> profile.getAddress())
+                .sorted(new ProfileCmpByAddr())
+                .distinct()
                 .collect(Collectors.toList()
                 );
     }
