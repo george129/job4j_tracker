@@ -12,8 +12,8 @@ public class School {
                 .collect(Collectors.toList());
     }
 
-    Map<String, Student> toMap(List<Student> ls) {
+    public Map<String, Student> toMap(List<Student> ls) {
         return ls.stream()
-                .collect(Collectors.toMap(st -> st.getSurname(), st -> st));
+                .collect(Collectors.toMap(st -> st.getSurname(), st -> st, (oldSt, newSt) -> newSt));
     }
 }
