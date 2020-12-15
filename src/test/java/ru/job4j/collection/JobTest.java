@@ -28,7 +28,7 @@ public class JobTest {
                 new Job("test1", 3),
                 new Job("test2", 6));
         Collections.sort(jl, new JobCmpNameAsc().thenComparing(new JobCmpPriorityAsc()));
-        assertEquals(Arrays.asList(
+        assertEquals(List.of(
                 new Job("test1", 0),
                 new Job("test1", 1),
                 new Job("test1", 3),
@@ -49,7 +49,7 @@ public class JobTest {
                 new Job("test2", 6));
 
         Collections.sort(jl, new JobCmpPriorityDesc().thenComparing(new JobCmpNameDesc()));
-        assertEquals(Arrays.asList(
+        assertEquals(List.of(
                 new Job("test2", 6),
                 new Job("test2", 5),
                 new Job("test1", 3),
@@ -67,7 +67,7 @@ public class JobTest {
                 new Job("test12", 3),
                 new Job("test12345", 2));
         Collections.sort(jl, new JobCmpNameLenDesc());
-        assertEquals(Arrays.asList(
+        assertEquals(List.of(
                 new Job("test12345", 2),
                 new Job("test12", 3),
                 new Job("test0", 6),
