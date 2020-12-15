@@ -1,4 +1,4 @@
-package bank;
+package ru.job4j.bank;
 
 import org.junit.Test;
 import ru.job4j.bank.Account;
@@ -34,6 +34,15 @@ public class BankServiceTest {
         bank.addUser(user);
         bank.addAccount(user.getPassport(), new Account("5546", 150D));
         assertThat(bank.findByRequisite("3434", "5546").getBalance(), is(150D));
+    }
+
+    @Test
+    public void accountNotFound() {
+        User u = new User("123", "Username");
+        BankService bs = new BankService();
+        bs.addUser(u);
+        bs.addAccount(u.getPassport(), new Account("321", 13D));
+        assertNull(bs.findByRequisite("123", "320"));
     }
 
     @Test
