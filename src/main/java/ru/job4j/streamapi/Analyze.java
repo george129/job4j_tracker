@@ -1,5 +1,6 @@
 package ru.job4j.streamapi;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -53,10 +54,27 @@ public class Analyze {
     }
 
     public static Tuple bestStudent(Stream<Pupil> stream) {
-        return null;
+        return stream
+                .map(pupil -> new Tuple(
+                    pupil.getName(),
+                    pupil.getSubjects().stream()
+                    .mapToInt(subj -> subj.getScore())
+                    .sum()
+                    )
+                )
+                .max(new TupleComparator())
+                .orElse(new Tuple("nobody", 0D)); //collect(Collectors.toList());
     }
 
     public static Tuple bestSubject(Stream<Pupil> stream) {
-        return null;
+        return stream
+                .flatMap(pupil -> pupil.getSubjects().stream())
+                .collect(Collectors.groupingBy(Subject::getName,
+                        Collectors.summingDouble(Subject::getScore)))
+                .entrySet()
+                .stream()
+                .map(tuple -> new Tuple(tuple.getKey(), tuple.getValue()))
+                .max(new TupleComparator())
+                .orElse(new Tuple("nothing", 0D));
     }
 }
